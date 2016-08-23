@@ -1,0 +1,79 @@
+--------------------------------------------------------------------
+parse html pages
+--------------------------------------------------------------------
+
+for example, for Dailymed product labels
+
+create folder if there is no folder "outputs" under "pre-annot-tool/html-parser"
+
+(1) inputs
+
+$ cd html-parser 
+define urls in input-urls.txt
+
+(2) run program
+
+$ node html-parser.js
+
+(3) outputs
+
+html normalized by tidyhtml lib in folder outputs
+
+--------------------------------------------------------------------
+apply NER results
+--------------------------------------------------------------------
+
+(1) inputs
+
+have NER XMLs prepared under folder NER
+
+(2) run program
+
+$ cd pre-annot-tool
+$ node apply-ner.js <ner-results (ex. NER/NER-outputs.json)> <html label directory> <options: pubmed or dailymed>
+
+ex pubmed:
+$ node apply-ner.js "NER/NER-pubmed-sample-outputs.json" "html-parser/outputs/" "pubmed"
+ex dailymed:
+$ node apply-ner.js "NER/NER-outputs.json" "../public/DDI-labels/" "dailymed" 
+
+(3) outputs
+JSON format ner results for load
+
+ex pubmed:
+ner-pubmed-json
+
+ex dailymed:
+ner-dailymed-json
+
+--------------------------------------------------------------------
+preload drug mention annotation to elastico
+--------------------------------------------------------------------
+
+(1) pre condition
+
+ner results: ner-pubmed-json or ner-dailymed-json
+
+(2) run program
+
+$ cd pre-annot-tool
+$ node load-ner.js <ner-results (ex. ner-pubmed-json)> <options: pubmed or dailymed> <user email (ex. yin2@gmail.com)>
+
+ex. $ node load-ner.js ner-pubmed-json pubmed yin2@gmail.com
+
+(3) check annotations in elastico head plugin
+
+http://localhost:9200/_plugin/head/
+
+--------------------------------------------------------------------
+delete specific set of annotations
+--------------------------------------------------------------------
+
+(1) delete by specified query condition
+curl -XDELETE 'http://localhost:9200/annotator/annotation/_query?q=<field>:<value>'
+
+(2) free store size after deletion 
+curl -XPOST 'http://localhost:9200/_optimize?only_expunge_deletes=true'
+
+(3) delete the whole index
+curl -XDELETE 'http://localhost:9200/annotator/annotation/'

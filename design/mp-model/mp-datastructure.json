@@ -1,0 +1,106 @@
+// Micropublication annotation
+{'annotationType' : 'MP',
+ 'uri' : 'httplocalhostDDIlabelstesthtml',
+ 'rawuri' : 'http://localhost/DDI-labels/test.html',
+ 'email' : 'xx@gmail.com',
+ 'updated' : '2016-05-03T17:39:44.986668+00:00',
+ 'created' : '2016-05-03T17:39:44.986668+00:00',
+ 
+ 'argues' : { // mp claim
+     'id': 'uuid',
+     'type': 'mp:claim',
+     'qualifiedBy': {
+         'Drug1': '',
+         'drug1ID' : '',
+         'relationship': 'inhibits',
+         'drug2ID' : '',
+         'Drug2': '',
+         'precipitant': 'drug1 or drug2'
+     },
+     'hasTarget' : {
+         'id': 'uuid'
+         'type': 'mp:claim',
+         'hasSelector': {
+             'prefix': 'string',
+             'exact': 'string',
+             'suffix': 'string'
+         }
+     },
+     'ranges': {
+         'start': 'string',
+         'end': 'string',
+         'startOffset': 'integer',
+         'endOffset': 'integer',
+     },
+     // put method name here
+     'method' : '',
+     // mp:data (one or more mp:data supports claim)
+     'supportsBy': 
+     [
+         {
+             'id': 'uuid',
+             'type': 'mp:data',
+             // mp:method (method supports data)
+             'supportsBy': { 
+                 'id': 'uuid'
+                 'type': 'mp:method',
+                 // mp:material (material supports method)
+                 'supportsBy': {
+                    'id': 'uuid',
+                     'type': 'mp:material',                    
+                    'drug1Dose': {
+                        'hasTarget': '',
+                        'ranges': ''
+                        'value': '',
+                        'formulation' : 'options: UNK, Oral, IV, transdermal',
+                        'duration' : 'days',
+                        'regimens' : 'options: UNK, SD, QD, BID, TID, QID, Q12, Q8, Q6, Daily'
+                    },                   
+                     'drug2Dose': {'the same as drug1Dose'},
+                     'participants': {
+                         'value': 'numeric',
+                         'hasTarget': '',
+                         'ranges': ''                        
+                    }                    
+                 }
+             },            
+             // evidence relationship - supports/refutes
+             'evRelationship': '',   
+             'grouprandom' : 'yes or no',
+             'parallelgroup' : 'yes or no',      
+             // data attributes
+             'auc': {
+                 'value': 'numeric',
+                 'type' : 'options: unk, percent, fold',
+                 'direction' : 'increase or decrease',
+                 'hasTarget' : '',
+                 'ranges' : ''
+             },
+             'cmax': {
+                 'value': 'numeric',
+                 'type' : 'options: unk, percent, fold',
+                 'direction' : 'unk, increase, decrease',
+                 'hasTarget' : '',
+                 'ranges' : ''
+             },
+             'clearance': {
+                 'value': 'numeric',
+                 'type' : 'options: unk, percent, fold',
+                 'direction' : 'unk, increase, decrease',
+                 'hasTarget' : '',
+                 'ranges' : ''
+             },
+             'halflife': {
+                 'value': 'numeric',
+                 'type' : 'options: unk, percent, fold',
+                 'direction' : 'unk, increase, decrease',
+                 'hasTarget' : '',
+                 'ranges' : ''
+             }
+        
+         }
+     ]    
+ }
+}
+
+

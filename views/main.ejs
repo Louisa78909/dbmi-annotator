@@ -1,0 +1,146 @@
+<html>
+  <body>
+
+    <style> body        { padding-top:80px; word-wrap:break-word; } </style>
+    <script src="js/jquery-1.11.1.min.js"></script>
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script> -->
+
+    <script src="js/bootstrap.min.js" crossorigin="anonymous"></script>
+
+    <!-- <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">  -->
+    <!-- <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> -->
+    <link rel="stylesheet" href="css/bootstrap.min.css"> <!-- load bootstrap css -->
+    <link rel="stylesheet" href="css/font-awesome.min.css"> <!-- load fontawesome -->
+    
+    <article>
+
+      <div class="row">
+	
+        <div class="col-sm-8">
+	  <div class="page-header text-center">
+	    <h1><span class="fa fa-anchor"></span> DBMI Annotator </h1>
+	  </div>
+	  
+	  <div class="well">
+	    
+	    <strong>Welcome: </strong> <%= user.email %> &nbsp;&nbsp;&nbsp;&nbsp;
+	    <a href="/dbmiannotator/logout" class="btn btn-default btn-sm">Logout</a>
+	    
+	    <br><br><br>
+	    
+	    <!-- document load  -->
+	    <strong>Load document: </strong>
+	    (Please input valid html web resources or PDF document URL): 
+	    <br>
+		  
+		  
+	    <div id="toppanel">
+	      
+	      <form action="/dbmiannotator/displayWebPage" method="get" >
+		<input type="text" id="sourceURL" name="sourceURL" size="40" maxlength="150" />
+		<input type="text" id="email" name="email" value="<%= user.email %>" style="display: none;" />  &nbsp;
+		<button id="loadButton" class="btn btn-success">load</button>
+	      </form>
+	      
+    <% if (loadMessage.length > 0) { %>
+				     <div class="alert alert-warning"><%=loadMessage %></div>
+				     <% } %>
+	    </div>
+		  
+		  
+            <h3><span class="fa fa-user"></span>&nbsp;Profile (Overview annotation tasks) </h3>
+
+	    <table class="table table-striped" >
+
+		    
+    <%  if (annotations.total > 0){   %>
+	      <tr>
+		<td>Document source URL </td>
+		<td>Number of Annotations </td>
+	      </tr>
+
+	      <%
+				      var dictAnnots = {};
+		 
+				      for(var i=0; i < annotations.rows.length; i++) {
+					  if (annotations.rows[i].rawurl in dictAnnots){
+					      dictAnnots[annotations.rows[i].rawurl] += 1;
+					  } else {
+					      dictAnnots[annotations.rows[i].rawurl] = 1;
+					  }
+				      }
+				      
+				      for (var item in dictAnnots){
+					  var dbmiurl = "";
+					  // if (item.match(/localhost.*\.pdf/g)){
+					  //     dbmiurl = "viewer.html?file=" + item + "&email=" + user.email;
+					  // }
+					  // else {
+					  //     dbmiurl = "displayWebPage?sourceURL=" + item + "&email=" + user.email;
+					  // }
+
+					  if (item.match(/localhost.*\.html/g)){
+					      dbmiurl = "displayWebPage?sourceURL=" + item + "&email=" + user.email;
+					  }
+					      %>
+		 <tr>
+						  <td><a href="<%=dbmiurl %>" > <%=item %> </a>  </td>
+						  <td><%=dictAnnots[item] %> </td>
+						  </tr>
+
+					      <% }
+				  } else { %>
+
+	    
+					      <strong>No annotations been made, below are sample document urls </strong><br><br>
+
+					   <p>Local PMC articles: <br>
+					     <a href="displayWebPage?sourceURL=http://localhost/dbmiannotator/PMC1490169.html&email=<%=user.email%>">http://localhost/dbmiannotator/PMC1490169.html</a> <br>
+					     <a href="displayWebPage?sourceURL=http://localhost/dbmiannotator/PMC3477350.html&email=<%=user.email%>">http://localhost/dbmiannotator/PMC3477350.html</a> <br>
+					     <a href="displayWebPage?sourceURL=http://localhost/dbmiannotator/PMC2686069.html&email=<%=user.email%>">http://localhost/dbmiannotator/PMC2686069.html</a> 
+					   </p>
+
+
+					   <p>External PMC articles: <br>
+					     <a href="displayWebPage?sourceURL=http://www.ncbi.nlm.nih.gov/pmc/articles/PMC1865122&email=<%=user.email%>" >http://www.ncbi.nlm.nih.gov/pmc/articles/PMC1865122</a> <br>
+					     <a href="displayWebPage?sourceURL=http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2015049&email=<%=user.email%>" >http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2015049</a> <br>
+	                     <a href="displayWebPage?sourceURL=http://www.ncbi.nlm.nih.gov/pmc/articles/PMC1873980&email=<%=user.email%>" >http://www.ncbi.nlm.nih.gov/pmc/articles/PMC1873980</a>	     
+					   </p>
+					      
+					   <p>Local dailymed html labels: <br>
+					     <a href="displayWebPage?sourceURL=http://<%-host %>/DDI-labels/2f7d4d67-10c1-4bf4-a7f2-c185fbad64ba.html&email=<%=user.email%>" >http://<%-host %>/DDI-labels/2f7d4d67-10c1-4bf4-a7f2-c185fbad64ba.html</a> <br>
+					     <a href="displayWebPage?sourceURL=http://<%-host %>/DDI-labels/5550433b-8c9c-4378-058f-6bb724c4f18c.html&email=<%=user.email%>" >http://<%-host %>/DDI-labels/5550433b-8c9c-4378-058f-6bb724c4f18c.html</a>	     
+					   </p>
+
+					   <p>
+					   Local pdf documents: <br>http://<%-host %>/DDI-pdfs/Backman_2005_16084850.pdf <br>http://<%-host %>/DDI-pdfs/Frelinger_2012_07351097.pdf 
+					   </p>
+					   <% } %>
+	    </table>
+	    <br><br>
+
+	    
+	    <!-- annotation download  -->
+
+	    <form action="/dbmiannotator/exportcsv" method="get">
+	      <strong>Download my annotations in csv: </strong>
+	      <input type="text" id="email" name="email" value="<%= user.email %>" style="display: none;" />
+	      <button id="exportButton" class="btn btn-success">Download</button>
+	    </form>
+	    
+	  </div>
+	  
+	</div>
+
+
+
+
+
+	
+      </div>	
+    </article>
+
+
+    
+  </body>
+</html>

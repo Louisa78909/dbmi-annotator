@@ -1,0 +1,317 @@
+body {
+  
+  background: white;
+  font-family: $font-face;
+  
+  
+  justify-content: center;
+  align-items: center;
+  
+  width:100vw;
+  display: flex;
+  height: 100vh;
+  line-height: 1;
+}
+
+h1 {
+  text-align: center;
+  font-family: $font-face;
+  font-size: 22px;
+  color: $dark;
+  font-weight: 700;
+  
+  span {
+    font-weight: 400;
+  }
+  
+}
+
+.container {
+  min-width: 640px;
+  /*display: flex;
+  flex-direction: column;*/
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+}
+
+
+/* Copy button styles*/
+/*.custombutton {
+  border: 0 none;
+  border-radius: 5px;
+  
+  padding: 12px 55px;
+  margin: 0 10px;
+  
+  cursor: pointer;
+  display: inline-block;
+  
+  font-size: 14px;
+  color: #fff;
+  text-transform: none;
+  
+  transition: all 80ms ease-in-out;
+
+  &:hover {
+      opacity: .7;
+  }
+}
+
+.custombutton.-dark {
+  background: $dark;
+  color: $white;
+}
+  
+.custombutton.-green {
+  background: $green;
+  color: $white;
+}
+
+.custombutton.-blue {
+  background: $blue;
+  color: $white;
+}*/
+
+/*.custombutton.-border {
+  background: transparent;
+  border: 2px solid $blue;
+  color: $blue;
+  
+  &:hover {
+    border-color: $dark;
+    color: $dark;
+    
+    opacity: 1;
+  }
+}*/
+
+/* Home and Annotator icons */
+.btn-success {
+  position:fixed;
+  bottom: 2px;
+  left: 50px;
+  border-radius: 8px;
+  border: 2px solid #8c8c8c;
+  background-color:#FFFFFF;
+  height: 38px;
+  width: 43px;
+  z-index: 999;
+}
+
+.btn-home {
+  position:fixed;
+  bottom:2px;
+  left:2px;
+  color:#FFFFFF;
+  border-radius: 8px;
+  border: 2px solid #8c8c8c;
+  background-color:#FFFFFF;
+  height: 38px;
+  width: 43x;
+  z-index: 999;
+}
+
+/*remove the button border in Chrome*/
+button:focus{
+  outline: 0 !important;
+}
+/*
+.btn-success {
+  // Add .button-inline class for inline-block display
+  display: block;
+  text-align: center;
+  cursor: pointer;
+  border: none;
+  .buttonSize(40px, 3px, 18px);
+  .transition(background-color, 0.2s);
+  .buttonColor(@default-background-color, @default-text-color);
+  .buttonColor(@primary-background-color, @primary-text-color);
+  display: inline-block;
+  vertical-align: middle;
+}*/
+
+
+/* MP menu */
+.mp-main-menu-1 {
+    display:block; 
+    list-style: none;
+    cursor:pointer; 
+    padding:3px 5px 5px 3px; 
+    border: 2px #336699 solid;
+    position:relative;
+    font-size: 11px;
+    font-weight: bold;
+    font-style: "Trebuchet MS", Arial, sans-serif;
+    background-color: white;
+}
+
+/*add data for */
+.mp-main-menu-2 {
+    display:block; 
+    list-style: none;
+    cursor:pointer; 
+    padding:3px 5px 5px 3px; 
+    border: 2px #336699 solid;
+    position:relative;
+    font-size: 11px;
+    font-weight: bold;
+    font-style: "Trebuchet MS", Arial, sans-serif;
+    background-color: white;
+}
+
+/* The container <div> - needed to position the dropdown content*/
+.mp-main-menu {
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    display: block;
+    min-width: 85px;
+    min-height: 40px;
+    text-align: center;
+    list-style: none;
+    color: black;
+}
+/* add matertal/data -link*/
+.mp-sub-menu-2 {
+    display: none;
+    position: absolute;
+    min-width: 100px;
+    left: 43px;
+    top:-20%;
+    color: black;
+    font-family: "Trebuchet MS", Arial, sans-serif;
+    font-size: 11px;
+    font-weight: bold;
+
+}
+
+/* Links inside the dropdown */
+.mp-sub-menu-2 a {
+    color: black;
+    font-size: 10px;
+    border: 2px #336699 solid;
+    padding:5px 4px 3px 0px; 
+    background-color: white;
+    display: block;
+    text-decoration: none;
+    min-width: 140px;
+    min-height: 10px;
+    text-align: left;
+    list-style: none;
+}
+
+
+/* Change color of dropdown links on hover 
+.mp-sub-menu-2 a:hover {background-color: #f1f1f1} */
+
+/* Show the dropdown menu on hover 
+.mp-main-menu:hover .mp-sub-menu-2 {
+    display: block;
+} */
+
+/* remove the circle list style */
+ul.mp-sub-menu-2{
+  list-style-type: none;
+}
+
+
+
+/* Change the background color of the dropdown button when the dropdown content is shown 
+.mp-main-menu:hover {
+    background-color: #3e8e41;
+}*/
+
+/* annotator table - material/data panel */
+#mp-claim-data-tb{
+    margin-left: 15%;
+    margin-right: 15%;
+    margin-bottom: 5%;
+    width: 70%;
+    /* height: 80%; */
+	min-width: 1000px;
+    max-height: 300px;
+    font-size: 15px;
+    border-collapse: collapse;
+    border: 2px solid #D4E0EE;
+    text-align: center; 
+    font-family: "Trebuchet MS", Arial, sans-serif;
+    font-size: 17px;
+    background-color: #DDEBFA;
+}
+
+
+/* annotator table -material/data */
+#mp-data-tb{
+    width: 100%;
+	min-width: 700px;
+    text-align: center; 
+    font-family: "Trebuchet MS", Arial, sans-serif;
+    font-size: 13px; 
+    background-color: #F7F9FC;
+    border: 2px solid #D4E0EE;
+}
+
+/* annotator table - claim pannel */
+#mp-claim-method-tb{
+
+   width: 100%;
+   height: 100%;
+   min-width: 300px;
+   max-hight: 240px;
+   font-family: "Trebuchet MS", Arial, sans-serif;
+   font-size: 14px;
+   border-collapse: collapse;
+   border-style: hidden;
+}
+
+#mp-claim-tb tr, td{
+  border-style: hidden;
+  padding:10px;
+}
+
+/* method option for claim panel */
+#mp-editor-method {
+  font-size: 16px;
+  width: 76%;
+  color: black;
+}
+
+/*claim options for claim panel */
+#mp-editor-claim-list {
+  font-size: 16px;
+  width: 97%;
+  color: black;
+}
+
+/* annotation editor */
+#tabs-2 {
+    all: initial;
+    color: #333; /* Lighten up font color */
+    font-family: Helvetica, Arial, sans-serif; /* Nicer font */
+    border-collapse:
+    collapse; border-spacing: 0;
+}
+
+#tabs-1{
+  font-size: 12px;
+  font-family: "Trebuchet MS", Arial, sans-serif;
+  border: none;
+  line-height: 16px;
+  
+}
+
+#Drug1,#Drug2{
+  font-family: "Trebuchet MS", Arial, sans-serif;
+  font-size: 13px;
+  margin-right: 30px;
+}
+
+#drug1precipitant,#drug2precipitant,#relationship{
+  font-family: "Trebuchet MS", Arial, sans-serif;
+  font-size: 12px;
+  margin-right: 70px;
+}
